@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :species do
-    name { 'Bird' }
+    name { 'Human' }
   end
 end
