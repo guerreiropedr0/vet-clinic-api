@@ -5,3 +5,16 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+Species.create([
+  { name: 'Insect' },
+  { name: 'Arachnid' },
+  { name: 'Mollusca' },
+  { name: 'Crustacean' },
+  { name: 'Fish' },
+  { name: 'Reptile' },
+  { name: 'Bird' },
+  { name: 'Amphibian' },
+  { name: 'Mammal' }
+])
+
+p "Created #{Species.count} species"
