@@ -15,10 +15,6 @@ RSpec.describe Animal, type: :model do
       it { should validate_presence_of(:birth_date) }
     end
 
-    context 'neutered attribute' do
-      it { should validate_presence_of(:neutered) }
-    end
-
     context 'weight_kg attribute' do
       it { should validate_presence_of(:weight_kg) }
     end
