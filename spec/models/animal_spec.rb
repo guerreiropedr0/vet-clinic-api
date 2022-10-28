@@ -17,7 +17,6 @@ RSpec.describe Animal, type: :model do
 
     context 'weight_kg attribute' do
       it { should validate_presence_of(:weight_kg) }
-      it { should validate_numericality_of(:weight_kg).is_greater_than_or_equal_to(0.05).is_less_than_or_equal_to(200) }
     end
   end
 end
