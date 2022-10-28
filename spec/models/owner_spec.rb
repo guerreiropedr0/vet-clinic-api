@@ -14,6 +14,8 @@ RSpec.describe Owner, type: :model do
     context 'email attribute' do
       subject { FactoryBot.create(:owner) }
       it { should validate_uniqueness_of(:email) }
+      it { should allow_value('johndoe@domain.com').for(:email) }
+      it { should_not allow_value('a_random_string').for(:email) }
     end
   end
 end
