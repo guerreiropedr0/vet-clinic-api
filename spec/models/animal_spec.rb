@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe Animal, type: :model do
   describe 'asssociations' do
     it { should belong_to :owner }
+    it { should belong_to :species }
   end
 
   describe 'validations' do

@@ -5,5 +5,6 @@ FactoryBot.define do
     neutered { false }
     weight_kg { '9.99' }
     owner
+    species
   end
 end
