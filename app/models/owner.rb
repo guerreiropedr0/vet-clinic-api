@@ -1,4 +1,6 @@
 class Owner < ApplicationRecord
+  has_many :animals, dependent: :destroy
+
   validates :name, presence: true, length: { in: 2..200 }
   validates :age, numericality: {
     greater_than_or_equal_to: 16,
