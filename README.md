@@ -1,24 +1,64 @@
-# README
+# Vet Clinic API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+> A simple way to manage a vet clinic. Create animal owners, add animals, vets and visits.
 
-Things you may want to cover:
+## Built With
 
-* Ruby version
+- RUBY
+- RAILS
+- GEM
+- TERMINAL
 
-* System dependencies
+## Getting Started
 
-* Configuration
+Click the "Code" button.
 
-* Database creation
+Clone the repository.
 
-* Database initialization
+Current Ruby Version for this project
 
-* How to run the test suite
+```
+ruby 3.1.2p20 (2022-04-12 revision 4491bb740a) [x86_64-linux]
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+Install all the dependencies.
 
-* Deployment instructions
+```
+bundle install
+```
 
-* ...
+Create and migrate the database
+
+```
+rails db:create
+rails db:migrate
+rails db:seed
+```
+
+To run the server
+
+```
+rails s
+```
+
+## Authors
+
+👤 **Pedro Guerreiro**
+
+- GitHub: [@guerreiropedr0](https://github.com/guerreiropedr0)
+- Twitter: [@guerreiropedr0](https://twitter.com/guerreiropedr0)
+- LinkedIn: [Pedro Guerreiro](https://www.linkedin.com/in/guerreiropedr0/)
+
+## 🤝 Contributing
+
+Contributions, issues, and feature requests are welcome!
+
+Feel free to check the [issues page](../../issues/).
+
+## Show your support
+
+Give a ⭐️ if you like this project!
+
+## 📝 License
+
+This project is [MIT](./MIT.md) licensed.
