@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe Animal, type: :model do
+  describe 'asssociations' do
+    it { should belong_to :owner }
+  end
+
   describe 'validations' do
     context 'name attribute' do
       it { should validate_presence_of(:name) }
