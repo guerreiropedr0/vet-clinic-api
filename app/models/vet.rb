@@ -1,4 +1,7 @@
 class Vet < ApplicationRecord
+  has_many :specializations
+  has_many :species, through: :specializations
+
   validates :name, presence: true, length: { in: 2..200 }
   validates :age, presence: true, numericality: {
     greater_than_or_equal_to: 18,
