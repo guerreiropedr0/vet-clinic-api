@@ -1,8 +1,9 @@
 FactoryBot.define do
   factory :animal do
-    name { "John Doe" }
-    birth_date { "2010-10-20" }
+    name { 'John Doe' }
+    birth_date { '2010-10-20' }
     neutered { false }
-    weight_kg { "9.99" }
+    weight_kg { '9.99' }
+    owner
   end
 end
