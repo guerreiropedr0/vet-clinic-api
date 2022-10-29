@@ -12,7 +12,7 @@ require 'rails_helper'
 # of tools you can use to make these specs even more expressive, but we're
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
-RSpec.describe '/api/v1/animals', type: :request do
+RSpec.describe '/api/v1/owners/1/animals', type: :request do
   # This should return the minimal set of attributes required to create a valid
   # Animal. As you add validations to Animal, be sure to
   # adjust the attributes here as well.
@@ -38,7 +38,7 @@ RSpec.describe '/api/v1/animals', type: :request do
   describe 'GET /index' do
     it 'renders a successful response' do
       Animal.create! valid_attributes
-      get api_v1_animals_url, headers: valid_headers, as: :json
+      get api_v1_owner_animals_url(owner_id: 1), headers: valid_headers, as: :json
       expect(response).to be_successful
     end
   end
@@ -46,7 +46,7 @@ RSpec.describe '/api/v1/animals', type: :request do
   describe 'GET /show' do
     it 'renders a successful response' do
       animal = Animal.create! valid_attributes
-      get api_v1_animal_url(animal), as: :json
+      get api_v1_owner_animal_url(animal, owner_id: 1), as: :json
       expect(response).to be_successful
     end
   end
@@ -55,13 +55,13 @@ RSpec.describe '/api/v1/animals', type: :request do
     context 'with valid parameters' do
       it 'creates a new Animal' do
         expect do
-          post api_v1_animals_url,
+          post api_v1_owner_animals_url(owner_id: 1),
                params: { animal: valid_attributes }, headers: valid_headers, as: :json
         end.to change(Animal, :count).by(1)
       end
 
       it 'renders a JSON response with the new animal' do
-        post api_v1_animals_url,
+        post api_v1_owner_animals_url(owner_id: 1),
              params: { animal: valid_attributes }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:created)
         expect(response.content_type).to match(a_string_including('application/json'))
@@ -71,13 +71,13 @@ RSpec.describe '/api/v1/animals', type: :request do
     context 'with invalid parameters' do
       it 'does not create a new Animal' do
         expect do
-          post api_v1_animals_url,
+          post api_v1_owner_animals_url(owner_id: 1),
                params: { animal: invalid_attributes }, as: :json
         end.to change(Animal, :count).by(0)
       end
 
       it 'renders a JSON response with errors for the new animal' do
-        post api_v1_animals_url,
+        post api_v1_owner_animals_url(owner_id: 1),
              params: { animal: invalid_attributes }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.content_type).to match(a_string_including('application/json'))
@@ -93,7 +93,7 @@ RSpec.describe '/api/v1/animals', type: :request do
 
       it 'updates the requested animal' do
         animal = Animal.create! valid_attributes
-        patch api_v1_animal_url(animal),
+        patch api_v1_owner_animal_url(animal, owner_id: 1),
               params: { animal: new_attributes }, headers: valid_headers, as: :json
         animal.reload
         new_attributes.each_pair do |key, value|
@@ -103,7 +103,7 @@ RSpec.describe '/api/v1/animals', type: :request do
 
       it 'renders a JSON response with the animal' do
         animal = Animal.create! valid_attributes
-        patch api_v1_animal_url(animal),
+        patch api_v1_owner_animal_url(animal, owner_id: 1),
               params: { animal: new_attributes }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:ok)
         expect(response.content_type).to match(a_string_including('application/json'))
@@ -113,7 +113,7 @@ RSpec.describe '/api/v1/animals', type: :request do
     context 'with invalid parameters' do
       it 'renders a JSON response with errors for the animal' do
         animal = Animal.create! valid_attributes
-        patch api_v1_animal_url(animal),
+        patch api_v1_owner_animal_url(animal, owner_id: 1),
               params: { animal: invalid_attributes }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.content_type).to match(a_string_including('application/json'))
@@ -125,7 +125,7 @@ RSpec.describe '/api/v1/animals', type: :request do
     it 'destroys the requested animal' do
       animal = Animal.create! valid_attributes
       expect do
-        delete api_v1_animal_url(animal), headers: valid_headers, as: :json
+        delete api_v1_owner_animal_url(animal, owner_id: 1), headers: valid_headers, as: :json
       end.to change(Animal, :count).by(-1)
     end
   end
