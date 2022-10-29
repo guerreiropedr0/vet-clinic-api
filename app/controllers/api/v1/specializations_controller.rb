@@ -1,5 +1,5 @@
 class Api::V1::SpecializationsController < ApplicationController
-  before_action :set_specialization, only: %i[ show destroy ]
+  before_action :set_specialization, only: %i[show destroy]
 
   # GET /api/v1/species/1/specializations
   def index
@@ -38,13 +38,14 @@ class Api::V1::SpecializationsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_specialization
-      @specialization = Specialization.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def specialization_params
-      params.require(:specialization).permit(:species_id, :vet_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_specialization
+    @specialization = Specialization.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def specialization_params
+    params.require(:specialization).permit(:species_id, :vet_id)
+  end
 end
