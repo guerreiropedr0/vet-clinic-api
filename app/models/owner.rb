@@ -7,5 +7,5 @@ class Owner < ApplicationRecord
     less_than_or_equal_to: 140,
     allow_nil: true
   }
-  validates :email, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP, allow_nil: true }
+  validates :email, uniqueness: true, allow_blank: true, format: { with: URI::MailTo::EMAIL_REGEXP }
 end
