@@ -18,3 +18,9 @@ Species.create([
 ])
 
 p "Created #{Species.count} species"
+
+User.first_or_create(
+  name: 'Pedro Guerreiro',
+  email: 'pedro@gmail.com',
+  password: 'password',
+  role: User.roles[:admin])
