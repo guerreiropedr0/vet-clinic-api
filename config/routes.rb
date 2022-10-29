@@ -2,9 +2,14 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :species
-      resources :vets
+      resources :vets do
+        get ':visits', to: 'visits#by_vet'
+      end
+
       resources :owners do
-        resources :animals
+        resources :animals do
+          resources :visits
+        end
       end
     end
   end

@@ -47,7 +47,6 @@ class Api::V1::AnimalsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def animal_params
-    puts params
     params.require(:animal).permit(:name, :birth_date, :neutered, :weight_kg, :owner_id, :species_id)
   end
 end
