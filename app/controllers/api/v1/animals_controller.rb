@@ -8,7 +8,7 @@ class Api::V1::AnimalsController < ApplicationController
     render json: @animals
   end
 
-  # GET /api/v1/owners/1/animals/1
+  # GET /api/v1/animals/1
   def show
     render json: @animal
   end
@@ -24,7 +24,7 @@ class Api::V1::AnimalsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /api/v1/owners/1/animals/1
+  # PATCH/PUT /api/v1/animals/1
   def update
     if @animal.update(animal_params)
       render json: @animal
@@ -33,7 +33,7 @@ class Api::V1::AnimalsController < ApplicationController
     end
   end
 
-  # DELETE /api/v1/owners/1/animals/1
+  # DELETE /api/v1/animals/1
   def destroy
     @animal.destroy
   end

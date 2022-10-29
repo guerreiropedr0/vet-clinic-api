@@ -7,8 +7,8 @@ Rails.application.routes.draw do
       end
 
       resources :owners do
-        resources :animals do
-          resources :visits
+        resources :animals, shallow: true do
+          resources :visits, shallow: true
         end
       end
     end
