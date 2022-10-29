@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
-      resources :owners
-      resources :animals
+      resources :owners do
+        resources :animals
+      end
     end
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

@@ -1,19 +1,19 @@
 class Api::V1::AnimalsController < ApplicationController
   before_action :set_animal, only: %i[show update destroy]
 
-  # GET /api/v1/animals
+  # GET /api/v1/owners/1/animals
   def index
-    @animals = Animal.all
+    @animals = Animal.where(owner_id: params[:owner_id])
 
     render json: @animals
   end
 
-  # GET /api/v1/animals/1
+  # GET /api/v1/owners/1/animals/1
   def show
     render json: @animal
   end
 
-  # POST /api/v1/animals
+  # POST /api/v1/owners/1/animals
   def create
     @animal = Animal.new(animal_params)
 
@@ -24,7 +24,7 @@ class Api::V1::AnimalsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /api/v1/animals/1
+  # PATCH/PUT /api/v1/owners/1/animals/1
   def update
     if @animal.update(animal_params)
       render json: @animal
@@ -33,7 +33,7 @@ class Api::V1::AnimalsController < ApplicationController
     end
   end
 
-  # DELETE /api/v1/animals/1
+  # DELETE /api/v1/owners/1/animals/1
   def destroy
     @animal.destroy
   end
@@ -47,6 +47,7 @@ class Api::V1::AnimalsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def animal_params
+    puts params
     params.require(:animal).permit(:name, :birth_date, :neutered, :weight_kg, :owner_id, :species_id)
   end
 end
