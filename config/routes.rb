@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :species
       resources :vets do
-        get ':visits', to: 'visits#by_vet'
+        get '/visits', to: 'visits#by_vet'
       end
 
       resources :owners do

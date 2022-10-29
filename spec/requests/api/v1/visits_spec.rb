@@ -14,15 +14,11 @@ require 'rails_helper'
 
 RSpec.describe '/api/v1/visits', type: :request do
   # This should return the minimal set of attributes required to create a valid
-  # Api::V1::Visit. As you add validations to Api::V1::Visit, be sure to
+  # Visit. As you add validations to Visit, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) do
-    skip('Add a hash of attributes valid for your model')
-  end
+  let(:valid_attributes) { attributes_for(:visit) }
 
-  let(:invalid_attributes) do
-    skip('Add a hash of attributes invalid for your model')
-  end
+  let(:invalid_attributes) { { visit_date: '' } }
 
   # This should return the minimal set of values that should be in the headers
   # in order to pass any filters (e.g. authentication) defined in
@@ -34,15 +30,15 @@ RSpec.describe '/api/v1/visits', type: :request do
 
   describe 'GET /index' do
     it 'renders a successful response' do
-      Api::V1::Visit.create! valid_attributes
-      get api_v1_visits_url, headers: valid_headers, as: :json
+      Visit.create! valid_attributes
+      get api_v1_animal_visits_url(animal_id: 1), headers: valid_headers, as: :json
       expect(response).to be_successful
     end
   end
 
   describe 'GET /show' do
     it 'renders a successful response' do
-      visit = Api::V1::Visit.create! valid_attributes
+      visit = Visit.create! valid_attributes
       get api_v1_visit_url(visit), as: :json
       expect(response).to be_successful
     end
@@ -50,32 +46,32 @@ RSpec.describe '/api/v1/visits', type: :request do
 
   describe 'POST /create' do
     context 'with valid parameters' do
-      it 'creates a new Api::V1::Visit' do
+      it 'creates a new Visit' do
         expect do
-          post api_v1_visits_url,
-               params: { api_v1_visit: valid_attributes }, headers: valid_headers, as: :json
-        end.to change(Api::V1::Visit, :count).by(1)
+          post api_v1_animal_visits_url(animal_id: 1),
+               params: { visit: valid_attributes }, headers: valid_headers, as: :json
+        end.to change(Visit, :count).by(1)
       end
 
-      it 'renders a JSON response with the new api_v1_visit' do
-        post api_v1_visits_url,
-             params: { api_v1_visit: valid_attributes }, headers: valid_headers, as: :json
+      it 'renders a JSON response with the new visit' do
+        post api_v1_animal_visits_url(animal_id: 1),
+             params: { visit: valid_attributes }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:created)
         expect(response.content_type).to match(a_string_including('application/json'))
       end
     end
 
     context 'with invalid parameters' do
-      it 'does not create a new Api::V1::Visit' do
+      it 'does not create a new Visit' do
         expect do
-          post api_v1_visits_url,
-               params: { api_v1_visit: invalid_attributes }, as: :json
-        end.to change(Api::V1::Visit, :count).by(0)
+          post api_v1_animal_visits_url(animal_id: 1),
+               params: { visit: invalid_attributes }, as: :json
+        end.to change(Visit, :count).by(0)
       end
 
-      it 'renders a JSON response with errors for the new api_v1_visit' do
-        post api_v1_visits_url,
-             params: { api_v1_visit: invalid_attributes }, headers: valid_headers, as: :json
+      it 'renders a JSON response with errors for the new visit' do
+        post api_v1_animal_visits_url(animal_id: 1),
+             params: { visit: invalid_attributes }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.content_type).to match(a_string_including('application/json'))
       end
@@ -85,31 +81,31 @@ RSpec.describe '/api/v1/visits', type: :request do
   describe 'PATCH /update' do
     context 'with valid parameters' do
       let(:new_attributes) do
-        skip('Add a hash of attributes valid for your model')
+        { visit_date: '2022-12-22' }
       end
 
-      it 'updates the requested api_v1_visit' do
-        visit = Api::V1::Visit.create! valid_attributes
+      it 'updates the requested visit' do
+        visit = Visit.create! valid_attributes
         patch api_v1_visit_url(visit),
-              params: { api_v1_visit: new_attributes }, headers: valid_headers, as: :json
+              params: { visit: new_attributes }, headers: valid_headers, as: :json
         visit.reload
-        skip('Add assertions for updated state')
+        expect(visit[:visit_date]).to eq(Date.parse(new_attributes[:visit_date]))
       end
 
-      it 'renders a JSON response with the api_v1_visit' do
-        visit = Api::V1::Visit.create! valid_attributes
+      it 'renders a JSON response with the visit' do
+        visit = Visit.create! valid_attributes
         patch api_v1_visit_url(visit),
-              params: { api_v1_visit: new_attributes }, headers: valid_headers, as: :json
+              params: { visit: new_attributes }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:ok)
         expect(response.content_type).to match(a_string_including('application/json'))
       end
     end
 
     context 'with invalid parameters' do
-      it 'renders a JSON response with errors for the api_v1_visit' do
-        visit = Api::V1::Visit.create! valid_attributes
+      it 'renders a JSON response with errors for the visit' do
+        visit = Visit.create! valid_attributes
         patch api_v1_visit_url(visit),
-              params: { api_v1_visit: invalid_attributes }, headers: valid_headers, as: :json
+              params: { visit: invalid_attributes }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.content_type).to match(a_string_including('application/json'))
       end
@@ -117,11 +113,11 @@ RSpec.describe '/api/v1/visits', type: :request do
   end
 
   describe 'DELETE /destroy' do
-    it 'destroys the requested api_v1_visit' do
-      visit = Api::V1::Visit.create! valid_attributes
+    it 'destroys the requested visit' do
+      visit = Visit.create! valid_attributes
       expect do
         delete api_v1_visit_url(visit), headers: valid_headers, as: :json
-      end.to change(Api::V1::Visit, :count).by(-1)
+      end.to change(Visit, :count).by(-1)
     end
   end
 end

@@ -1,7 +1,7 @@
 class Api::V1::VisitsController < ApplicationController
   before_action :set_visit, only: %i[show update destroy]
 
-  # GET /api/v1/owners/1/animals
+  # GET /api/v1/animals/1/visits
   def index
     @visits = Visit.where(animal_id: params[:animal_id])
 
@@ -21,7 +21,7 @@ class Api::V1::VisitsController < ApplicationController
     render json: @visit
   end
 
-  # POST /api/v1/owners/1/animals
+  # POST /api/v1/animals/1/visits
   def create
     @visit = Visit.new(visit_params)
 
