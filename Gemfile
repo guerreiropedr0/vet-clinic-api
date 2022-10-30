@@ -54,3 +54,6 @@ end
 
 # Rubocop linter
 gem 'rubocop', '>= 1.0', '< 2.0'
+
+# JSON API serializer
+gem 'jsonapi-serializer'
