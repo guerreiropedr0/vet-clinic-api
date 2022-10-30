@@ -10,7 +10,7 @@ class Api::V1::VetsController < ApplicationController
 
   # GET /api/v1/vets/1
   def show
-    render json: @vet
+    render json: VetSerializer.new(@vet)
   end
 
   # POST /api/v1/vets
