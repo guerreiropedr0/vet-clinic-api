@@ -10,7 +10,11 @@ class Api::V1::OwnersController < ApplicationController
 
   # GET /api/v1/owners/1
   def show
-    render json: @owner
+    options = {
+      include: [:animals]
+    }
+
+    render json: OwnerSerializer.new(@owner, options)
   end
 
   # POST /api/v1/owners
