@@ -18,7 +18,7 @@ class Api::V1::AnimalsController < ApplicationController
     @animal = Animal.new(animal_params)
 
     if @animal.save
-      render json: @animal, status: :created
+      render json: AnimalSerializer.new(@animal), status: :created
     else
       render json: @animal.errors, status: :unprocessable_entity
     end
